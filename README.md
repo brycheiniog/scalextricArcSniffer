@@ -22,12 +22,14 @@ It should build and run without any problems.
 There are a number of defines which affect the behaviour of the application:
 
 LOG_LANE -- This is the number of the lane that you wish to monitor
+
 LOG_UNKNOWN -- Set to 1 to capture the packets sent by the base on channel 79.
+
 LOG_PAIRING -- Set to 1 to capture the packets sent by the base on channel 81.
 
 # Output
 
-'
+
 Elapsed Time,CRC Status,Frequency Bin,Pkt[0],Pkt[1],Pkt[2],Pkt[3],Pkt[4],Pkt[5]
 940,1,5,4,3,10,81,0,81
 35,1,5,4,3,10,81,0,81
