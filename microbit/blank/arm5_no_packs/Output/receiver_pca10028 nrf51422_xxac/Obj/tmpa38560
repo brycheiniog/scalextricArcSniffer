@@ -1,0 +1,34 @@
+	.syntax unified
+	.cpu cortex-m0
+	.fpu softvfp
+	.eabi_attribute 20, 1
+	.eabi_attribute 21, 1
+	.eabi_attribute 23, 3
+	.eabi_attribute 24, 1
+	.eabi_attribute 25, 1
+	.eabi_attribute 26, 1
+	.eabi_attribute 30, 6
+	.eabi_attribute 34, 0
+	.eabi_attribute 18, 4
+	.thumb
+	.syntax unified
+	.file	"SEGGER_RTT_printf.c"
+	.text
+.Ltext0:
+.Letext0:
+	.section	.debug_line,"",%progbits
+.Ldebug_line0:
+	.section	.debug_str,"MS",%progbits,1
+.LASF0:
+	.ascii	"C:/Users/Jonathan/Documents/code/arcReceiverMultiCh"
+	.ascii	"annelSniffer/pca10028/blank/arm5_no_packs/../../../"
+	.ascii	"../nRF5_SDK_12.2.0_f012efa/external/segger_rtt/SEGG"
+	.ascii	"ER_RTT_printf.c\000"
+.LASF1:
+	.ascii	"GNU C99 5.4.1 20160609 (release) [ARM/embedded-5-br"
+	.ascii	"anch revision 237715] -fmessage-length=0 -mtp=soft "
+	.ascii	"-mcpu=cortex-m0 -mlittle-endian -mfloat-abi=soft -m"
+	.ascii	"thumb -g2 -gpubnames -std=gnu99 -fno-dwarf2-cfi-asm"
+	.ascii	" -fno-builtin -ffunction-sections -fdata-sections -"
+	.ascii	"fshort-enums -fno-common\000"
+	.ident	"GCC: (GNU) 5.4.1 20160609 (release) [ARM/embedded-5-branch revision 237715]"

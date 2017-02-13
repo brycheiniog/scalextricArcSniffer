@@ -1,0 +1,90 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="receiver_pca10028" target="8" version="2">
+  <project Name="receiver_pca10028">
+    <configuration
+      Name="Common"
+      Target="nRF51422_xxAC"
+      arm_architecture="v6M"
+      arm_core_type="Cortex-M0"
+      arm_endian="Little"
+      arm_simulator_memory_simulation_parameter="RX 00000000,00040000,FFFFFFFF;RWX 20000000,00008000,CDCDCDCD"
+      arm_target_interface_type="SWD"
+      debug_start_from_entry_point_symbol="No"
+      debug_target_connection="J-Link"
+      linker_memory_map_file="$(StudioDir)/samples/MemoryMap_ARM.xml"
+      linker_memory_map_macros="FLASH_START=0x00000000;FLASH_SIZE=0x00040000;SRAM_START=0x20000000;SRAM_SIZE=0x00008000"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="JLink/propertyGroups_CM.xml" />
+    <folder Name="Internal Files">
+      <file file_name="$(StudioDir)/source/thumb_crt0.s" />
+      <file file_name="../../../embedded_studio/ses_nrf51_startup.s" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/toolchain/system_nrf51.c" />
+    </folder>
+    <configuration
+      Name="nrf51422_xxac"
+      Target="nRF51822_xxAA"
+      arm_architecture="v6M"
+      arm_core_type="Cortex-M0"
+      arm_endian="Little"
+      arm_simulator_memory_simulation_parameter="RX 00000000,00040000,FFFFFFFF;RWX 20000000,00004000,CDCDCDCD"
+      arm_target_trace_interface_type="None"
+      c_preprocessor_definitions="NRF51822;BOARD_CUSTOM;NRF51;SWI_DISABLE0"
+      c_user_include_directories="$(PackagesDir)/CMSIS_4/CMSIS/Include;../../../config/receiver_pca10028;../../../config;../../../../nRF5_SDK_12.2.0_f012efa/components/components;../../../../nRF5_SDK_12.2.0_f012efa/components/boards;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/common;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/clock;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/delay;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/gpiote;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/hal;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/nrf_soc_nosd;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/radio_config;../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/uart;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/bsp;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/button;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/fifo;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/log;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/log/src;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/timer;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/uart;../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/util;../../../../nRF5_SDK_12.2.0_f012efa/components/toolchain;../../..;../../../../nRF5_SDK_12.2.0_f012efa/external/segger_rtt;../config;../../../../nRF5_SDK_12.2.0_f012efa/components/device;"
+      debug_register_definition_file="$(PackagesDir)/nRF/XML/nrf51_Registers.xml"
+      linker_memory_map_macros="FLASH_START=0x00000000;FLASH_SIZE=0x00040000;SRAM_START=0x20000000;SRAM_SIZE=0x00004000" />
+    <folder Name="Application">
+      <file file_name="../../../main.c" />
+      <file file_name="../config/sdk_config.h" />
+    </folder>
+    <folder Name="Board Definition">
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/boards/boards.c" />
+    </folder>
+    <folder Name="Board Support">
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/bsp/bsp.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/bsp/bsp_nfc.c" />
+    </folder>
+    <folder Name="nRF_Drivers">
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/common/nrf_drv_common.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/gpiote/nrf_drv_gpiote.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/uart/nrf_drv_uart.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/drivers_nrf/radio_config/radio_config.c" />
+      <folder Name="Documentation">
+        <file file_name="../../../license.txt" />
+      </folder>
+    </folder>
+    <folder Name="nRF_Libraries">
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/button/app_button.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/util/app_error.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/util/app_error_weak.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/fifo/app_fifo.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/timer/app_timer.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/uart/app_uart_fifo.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/util/app_util_platform.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/util/nrf_assert.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/util/sdk_errors.c" />
+    </folder>
+    <folder Name="nRF_Log">
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/log/src/nrf_log_backend_serial.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/components/libraries/log/src/nrf_log_frontend.c" />
+    </folder>
+    <folder Name="nRF_Segger_RTT">
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/external/segger_rtt/SEGGER_RTT.c" />
+      <file file_name="../../../../nRF5_SDK_12.2.0_f012efa/external/segger_rtt/SEGGER_RTT_printf.c" />
+    </folder>
+  </project>
+  <configuration Name="Internal" hidden="Yes" />
+  <configuration Name="nrf51422_xxac" inherited_configurations="Internal" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 3"
+    gcc_optimization_level="None" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 1"
+    gcc_optimization_level="Level 1"
+    inherited_configurations="Internal" />
+</solution>

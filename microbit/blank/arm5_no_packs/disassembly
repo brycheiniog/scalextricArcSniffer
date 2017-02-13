@@ -1,0 +1,360 @@
+    4639        mov r1, r7
+--- main.c -- 99 -------------------------------------------
+}
+int32_t read_packet()
+{
+uint32_t result = 0;
+    9A00        ldr r2, [sp]
+    F000F8B8    bl 0x00000628
+    2200        movs r2, #0
+--- main.c -- 104 ------------------------------------------
+uint32_t waitCount;
+uint32_t devmiss=0;
+NRF_RADIO->EVENTS_READY = 0U;
+    1E40        subs r0, r0, #1
+    4191        sbcs r1, r2
+    9105        str r1, [sp, #20]
+    9004        str r0, [sp, #16]
+    9B04        ldr r3, [sp, #16]
+--- main.c -- 108 ------------------------------------------
+NRF_RADIO->EVENTS_END = 0U;
+    43DB        mvns r3, r3
+    9A05        ldr r2, [sp, #20]
+    43D2        mvns r2, r2
+    9806        ldr r0, [sp, #24]
+    4318        orrs r0, r3
+--- main.c -- 109 ------------------------------------------
+// Start listening and wait for address received event
+NRF_RADIO->TASKS_START = 1U;
+    9907        ldr r1, [sp, #28]
+    4311        orrs r1, r2
+    9107        str r1, [sp, #28]
+--- main.c -- 111 ------------------------------------------
+// Wait for end of packet or buttons state changed
+waitCount =0;
+    9006        str r0, [sp, #24]
+    4937        ldr r1, =0x617B6ABB
+--- main.c -- 114 ------------------------------------------
+while (NRF_RADIO->EVENTS_END == 0U)
+    9806        ldr r0, [sp, #24]
+--- main.c -- 115 ------------------------------------------
+{
+//Wait
+waitCount++;
+    6008        str r0, [r1]
+    9807        ldr r0, [sp, #28]
+    6048        str r0, [r1, #4]
+--- main.c -- 118 ------------------------------------------
+while (NRF_RADIO->EVENTS_END == 0U)
+    B009        add sp, sp, #0x24
+    BDF0        pop {r4-r7, pc}
+    B570        push {r4-r6, lr}
+    4834        ldr r0, =0x2B00697B
+    6944        ldr r4, [r0, #20]
+    4834        ldr r0, =0x697BD003
+--- main.c -- 124 ------------------------------------------
+return -1;
+}*/
+}
+if (NRF_RADIO->CRCSTATUS != 1U)
+    6885        ldr r5, [r0, #8]
+    6846        ldr r6, [r0, #4]
+    00AA        lsls r2, r5, #2
+    4631        mov r1, r6
+    4620        mov r0, r4
+    F000F8A7    bl 0x00000648
+    2800        cmp r0, #0
+    D001        beq 0x00000502
+    2000        movs r0, #0
+    BD70        pop {r4-r6, pc}
+--- main.c -- 136 ------------------------------------------
+// while (NRF_RADIO->EVENTS_DISABLED == 0U)
+{
+// wait
+}
+return 1;
+    2001        movs r0, #1
+--- main.c -- 141 ------------------------------------------
+}
+    E7FC        b 0x00000500
+    482D        ldr r0, =0x697BD003
+    6840        ldr r0, [r0, #4]
+    2800        cmp r0, #0
+    D001        beq 0x00000512
+    2001        movs r0, #1
+    E000        b 0x00000514 <csense_timeout_handler>
+    2000        movs r0, #0
+--- main.c -- 142 ------------------------------------------
+static void csense_timeout_handler(void * p_context)
+{
+    4605        mov r5, r0
+    F7FFFFE5    bl 0x000004E4
+    2800        cmp r0, #0
+--- main.c -- 145 ------------------------------------------
+ret_code_t err_code;
+NRF_LOG_INFO("timout...\r\n");
+    D007        beq 0x0000052E
+    F7FFFEBB    bl 0x00000298
+    2003        movs r0, #3
+    0280        lsls r0, r0, #10
+--- main.c -- 148 ------------------------------------------
+return;
+    F000F855    bl 0x000005D4
+    F000F835    bl 0x00000598
+    F7FFFF9B    bl 0x00000468
+    2D00        cmp r5, #0
+--- main.c -- 154 ------------------------------------------
+* @brief Function for application main entry.
+* @return 0. int return type required by ANSI/ISO standard.
+*/
+int main(void)
+{
+    D00E        beq 0x00000554
+    4820        ldr r0, =0x2B00697B
+    6946        ldr r6, [r0, #20]
+--- main.c -- 159 ------------------------------------------
+uint32_t i;
+uint32_t freq;
+uint32_t mode;
+uint32_t err_code = NRF_SUCCESS;
+    4820        ldr r0, =0x697BD003
+    6884        ldr r4, [r0, #8]
+--- main.c -- 163 ------------------------------------------
+uint32_t timerValue;
+clock_initialization();
+    6847        ldr r7, [r0, #4]
+    4621        mov r1, r4
+--- main.c -- 166 ------------------------------------------
+APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, NULL);
+    4630        mov r0, r6
+    F7FFFEC9    bl 0x000002DA
+    4622        mov r2, r4
+    4639        mov r1, r7
+    4630        mov r0, r6
+    F7FFFEB4    bl 0x000002BA
+    BF00        nop
+    F000F820    bl 0x00000598
+    B510        push {r4, lr}
+    4818        ldr r0, =0x697BD003
+--- main.c -- 167 ------------------------------------------
+APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, NULL);
+    6844        ldr r4, [r0, #4]
+    481A        ldr r0, =0x00192200
+    6004        str r4, [r0]
+    4620        mov r0, r4
+--- main.c -- 167 ------------------------------------------
+APP_TIMER_DEF(timer_0);
+err_code = app_timer_create(&timer_0, APP_TIMER_MODE_REPEATED, csense_timeout_handler);
+    F000F8DC    bl 0x00000720
+    BD10        pop {r4, pc}
+    4815        ldr r0, =0xF0020018
+    6800        ldr r0, [r0]
+    6800        ldr r0, [r0]
+    1C40        adds r0, r0, #1
+    D101        bne 0x00000578
+--- main.c -- 170 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    BF00        nop
+    E7FE        b 0x00000576
+    4810        ldr r0, =0x697BD003
+    6800        ldr r0, [r0]
+    2800        cmp r0, #0
+--- main.c -- 171 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    D002        beq 0x00000586
+    2804        cmp r0, #4
+    D106        bne 0x00000592
+    E001        b 0x0000058A
+--- main.c -- 171 ------------------------------------------
+err_code = app_timer_start(timer_0, APP_TIMER_TICKS_TIMEOUT, NULL);
+    F7FFFFBE    bl 0x00000506
+    F7FFFFE5    bl 0x00000558
+    BF00        nop
+    E7FE        b 0x00000590
+    BF00        nop
+    BF00        nop
+    E7FE        b 0x00000596
+--- main.c -- 173 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    F3BF8F4F    dsb sy
+    480B        ldr r0, =0xF0002001
+    490C        ldr r1, =0x0003FCFF
+    60C8        str r0, [r1, #12]
+--- main.c -- 174 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    F3BF8F4F    dsb sy
+    BF00        nop
+    E7FE        b 0x000005A8
+--- main.c -- 174 ------------------------------------------
+err_code = NRF_LOG_INIT(NULL);
+    0000        movs r0, r0
+    E500        b 0xFFFFFFB0
+    4001        ands r1, r0
+    E400        b 0xFFFFFDB4
+    4001        ands r1, r0
+    40000600    .word 0x40000600
+    10001000    .word 0x10001000
+    00000800    .word 0x00000800
+    000007B8    .word 0x000007B8
+    07BC        lsls r4, r7, #30
+--- main.c -- 177 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+err_code = bsp_init(BSP_INIT_LED, APP_TIMER_TICKS(100, APP_TIMER_PRESCALER), NULL);
+    0000        movs r0, r0
+    20000000    .word 0x20000000
+    05FA0004    .word 0x05FA0004
+    E000ED00    .word 0xE000ED00
+    B510        push {r4, lr}
+--- main.c -- 179 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    4601        mov r1, r0
+    4B10        ldr r3, =0x00DB23A2
+    681A        ldr r2, [r3]
+    4608        mov r0, r1
+    2302        movs r3, #2
+--- main.c -- 180 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    4C0F        ldr r4, =0x50D12102
+    6063        str r3, [r4, #4]
+    BF00        nop
+    4B0F        ldr r3, =0x23A24A27
+--- main.c -- 180 ------------------------------------------
+// Set radio configuration parameters
+radio_configure();
+    681B        ldr r3, [r3]
+    2B00        cmp r3, #0
+--- main.c -- 183 ------------------------------------------
+NRF_RADIO->PACKETPTR = (uint32_t)&packet;
+    D0FB        beq 0x000005E6
+    1C53        adds r3, r2, #1
+    D004        beq 0x000005FC
+    4290        cmp r0, r2
+--- main.c -- 184 ------------------------------------------
+err_code = bsp_indication_set(BSP_INDICATE_USER_STATE_OFF);
+    D202        bcs 0x000005FC
+    4B0A        ldr r3, =0x50D12102
+    6118        str r0, [r3, #16]
+    E001        b 0x00000600
+    4B08        ldr r3, =0x50D12102
+--- main.c -- 186 ------------------------------------------
+NRF_LOG_INFO("Wait for first packet\r\n");
+    6098        str r0, [r3, #8]
+    BF00        nop
+    4B08        ldr r3, =0x23A24A27
+    681B        ldr r3, [r3]
+    2B00        cmp r3, #0
+--- main.c -- 187 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    D0FB        beq 0x00000602
+    2300        movs r3, #0
+    4C04        ldr r4, =0x50D12102
+    6063        str r3, [r4, #4]
+    BF00        nop
+--- main.c -- 188 ------------------------------------------
+APP_ERROR_CHECK(err_code);
+    4B04        ldr r3, =0x23A24A27
+    681B        ldr r3, [r3]
+    2B00        cmp r3, #0
+    D0FB        beq 0x00000612
+--- main.c -- 188 ------------------------------------------
+NRF_LOG_FLUSH();
+NRF_RADIO->MODE = (RADIO_MODE_MODE_Nrf_250Kbit << RADIO_MODE_MODE_Pos);
+    BD10        pop {r4, pc}
+    10001000    .word 0x10001000
+    4001E500    .word 0x4001E500
+    4001E400    .word 0x4001E400
+    B510        push {r4, lr}
+    2A20        cmp r2, #32
+    DB04        blt 0x00000638
+    4601        mov r1, r0
+    3A20        subs r2, #32
+    4091        lsls r1, r2
+    2000        movs r0, #0
+--- main.c -- 191 ------------------------------------------
+NRF_LOG_INFO("Mode: %u\r\n", (unsigned int)NRF_RADIO->MODE);
+NRF_RADIO->FREQUENCY = 11; // Frequency bin 7, 2407MHz
+    BD10        pop {r4, pc}
+    4091        lsls r1, r2
+    2320        movs r3, #32
+    1A9C        subs r4, r3, r2
+    4603        mov r3, r0
+--- main.c -- 196 ------------------------------------------
+startRadio();
+    40E3        lsrs r3, r4
+    4319        orrs r1, r3
+--- main.c -- 197 ------------------------------------------
+NRF_LOG_INFO("Freq: %u\r\n", (unsigned int)2400+NRF_RADIO->FREQUENCY)
+    4090        lsls r0, r2
+    BD10        pop {r4, pc}
+    4603        mov r3, r0
+    B510        push {r4, lr}
+    430B        orrs r3, r1
+    079B        lsls r3, r3, #30
+    D10F        bne 0x00000672
+    2A04        cmp r2, #4
+    D30D        bcc 0x00000672
+    C808        ldm r0!, {r3}
+    C910        ldm r1!, {r4}
+    1F12        subs r2, r2, #4
+--- main.c -- 198 ------------------------------------------
+while(1){
+int32_t received = read_packet();
+    42A3        cmp r3, r4
+    D0F8        beq 0x00000652
+    BA18        rev r0, r3
+    BA21        rev r1, r4
+--- main.c -- 200 ------------------------------------------
+int32_t elapsed;
+int32_t lastTime;
+timerValue = app_timer_cnt_get();
+    4288        cmp r0, r1
+    D901        bls 0x0000066C
+    2001        movs r0, #1
+    BD10        pop {r4, pc}
+--- main.c -- 203 ------------------------------------------
+elapsed = timerValue-lastTime;
+    2000        movs r0, #0
+    43C0        mvns r0, r0
+    BD10        pop {r4, pc}
+    2A00        cmp r2, #0
+--- main.c -- 204 ------------------------------------------
+//NRF_LOG_INFO("Time: %d %d\r\n",timerValue,elapsed);
+if(received != -1) {
+    D003        beq 0x0000067E
+    07D3        lsls r3, r2, #31
+    D003        beq 0x00000682
+--- main.c -- 206 ------------------------------------------
+//Note first byte of packet isn't shown as it is replaced with the elapsed time
+NRF_LOG_INFO("%d Pkt: 0x%x 0x%x 0x%x 0x%x 0x%x!!\r\n",elapsed,packet[1],packet[2],packet[3],packet[4],packet[5]);
+    1C52        adds r2, r2, #1
+    E007        b 0x0000068E
+    2000        movs r0, #0
+    BD10        pop {r4, pc}
+    7803        ldrb r3, [r0]
+    780C        ldrb r4, [r1]
+    1C40        adds r0, r0, #1
+    1C49        adds r1, r1, #1
+    1B1B        subs r3, r3, r4
+    D107        bne 0x0000069E
+    7803        ldrb r3, [r0]
+    780C        ldrb r4, [r1]
+    1C40        adds r0, r0, #1
+    1C49        adds r1, r1, #1
+    1B1B        subs r3, r3, r4
+    D101        bne 0x0000069E
+    1E92        subs r2, r2, #2
+    D1F1        bne 0x00000682
+    4618        mov r0, r3
+    BD10        pop {r4, pc}
+    4770        bx lr
+    4770        bx lr
+    4770        bx lr
+    B510        push {r4, lr}
+--- main.c -- 208 ------------------------------------------
+}
+lastTime = timerValue;
+    F000F807    bl 0x000006BC
+--- main.c -- 211 ------------------------------------------
+NRF_LOG_FLUSH();
+}
+    BD10        pop {r4, pc}
